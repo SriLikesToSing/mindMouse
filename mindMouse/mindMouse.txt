@@ -1,0 +1,86 @@
+Design Doc:
+
+Function: 
+	control a computer mouse using either your head or your eyes (not decided
+			what's more fluid)
+
+	use eyes as a mouse clicker and do normal button 1 and button 2 functions
+	with them
+
+	features: 
+		left click: left eye blink (right eye to camera)
+		right click: right eye blink (left eye to camera)
+		left eye close head move down and up (scroll up and down)
+		consistent results
+
+		eye tracking route:
+			- Eyes position - > stream window cordinates -> mouse cordinates 
+
+			- is there a general purpose method? 
+				- one solution requires you to put your face in
+
+
+			- gonna need blink detection
+
+		
+
+	
+		
+
+
+		
+
+		
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
