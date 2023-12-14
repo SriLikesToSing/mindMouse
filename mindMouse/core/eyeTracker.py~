@@ -3,7 +3,7 @@ import os
 import cv2
 import dlib
 
-class EyeTracker(object):
+class EyeTracker(frame):
    
     def __init__(self):
         self.frame = None
