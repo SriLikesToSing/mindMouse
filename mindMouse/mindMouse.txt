@@ -19,10 +19,12 @@ Function:
 			- is there a general purpose method? 
 				- one solution requires you to put your face in
 
-
 			- gonna need blink detection
 
-		
+			- where you look is where the direction mouse ends up moving
+				- consistency needs to be atleast somehwat decent
+					- hopefully with good lighting and maybe an improved model, we
+					can get consistent results
 
 	
 		
