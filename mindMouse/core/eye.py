@@ -62,7 +62,7 @@ class eye(object):
         #such sexy code
         return ratio if ratio != 0 else ValueError("Zero Division Error")
 
-    def analyze(self, originalFrame, landmarks, side): #add calibration variable, it's important to customly change frame depending on camera conditions 
+    def analyze(self, originalFrame, landmarks, side, calibration): 
         if side == 0:
             points=self.LEFT_EYE_POINTS
         elif side==1:
@@ -73,8 +73,13 @@ class eye(object):
         self.blinking = self.blinkingRatio(landmarks, points)
         self.isolate(originalFrame, landmarks, points)
 
+        if not calibration.isComplete():
+            calibration.evaluate(self.frame, side)
         
-        #add code that accounts for calibration 
+        threshold = calibration.threshold(side)
+        self.pupil = Pupil(self.frame, threshold)
+
+        
 
 
 
