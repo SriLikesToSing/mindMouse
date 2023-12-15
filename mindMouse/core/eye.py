@@ -4,8 +4,8 @@ import cv2
 
 
 class eye(object):
-    LEFT_EYE_POINTS = [36, 37, 38, 39, 40, 41]
-    RIGHT_EYE_POINTS = [42, 43, 44, 45, 46, 47]
+    LEFTEYEPOINTS= [36, 37, 38, 39, 40, 41]
+    RIGHTEYEPOINTS= [42, 43, 44, 45, 46, 47]
 
     def __init__(self, original_frame, landmarks, side, calibration):
         self.frame = None
@@ -26,9 +26,12 @@ class eye(object):
         region = region.astype(np.int32)
         self.landmarkPoints = region
 
+
+        # .shape fetches dimensions of type objects in the form of a tuple
         height, width = frame.shape[:2]
         blackFrame = np.zeros((height, width), np.uint8)
         #what truly is a mask? mathematically.
+        # a function from R^n to R^m such that the function is stripped of its parts according to some restriction set {}
         mask = np.full((height, width), 255, np.uint8)
         cv2.fillPoly(mask, [region], (0, 0, 0))
         eye = cv2.bitwise_not(blackFrame, frame.copy(), mask=mask)
@@ -44,6 +47,37 @@ class eye(object):
 
         height, width = self.frame.shape[:2]
         self.center = (width /2, height/2)
+
+    def blinkingRatio(self, landmarks, points):
+        left = (landmarks.part(points[0]).x, landmarks.part(points[0]).y) 
+        right= (landmarks.part(points[3]).x, landmarks.part(points[3]).y) 
+        #what does .part() do exactly?
+        top = self.middlePoint(landmarks.part(points[1]), landmarks.part(points[2]))
+        bottom= self.middlePoint(landmarks.part(points[5]), landmarks.part(points[4]))
+
+        eyeWidth=math.hypot((left[0] - right[0]), (left[1] - right[1]))
+        eyeHeight=math.hypot((top[0] - bottom[0]), (top[1] - bottom[1]))
+        ratio=eyeWidth/eyeHeight
+
+        #such sexy code
+        return ratio if ratio != 0 else ValueError("Zero Division Error")
+
+    def analyze(self, originalFrame, landmarks, side): #add calibration variable, it's important to customly change frame depending on camera conditions 
+        if side == 0:
+            points=self.LEFT_EYE_POINTS
+        elif side==1:
+            points=self.RIGHT_EYE_POINTS
+        else:
+            return
+        
+        self.blinking = self.blinkingRatio(landmarks, points)
+        self.isolate(originalFrame, landmarks, points)
+
+        
+        #add code that accounts for calibration 
+
+
+
 
 
 
