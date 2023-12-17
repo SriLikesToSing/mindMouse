@@ -35,8 +35,19 @@ Function:
 		 - maybe head route might be a good option still for more consistent
 		 mouse movement
 
+
+12/16/2023
+	 - tracking consistently is utter dog shit.
+	 	- might be a lossy compression issue, or problems with byte to byte compression
+		and translation.
+			- might have to information theory this to oblivion
+
+	- got foundational library complete, the tools are there to make the rest
+	of the application. Real work begins.
+
 	
-		
+	-startup is also really snow for an external webcam compared to an
+	internal one
 
 
 		

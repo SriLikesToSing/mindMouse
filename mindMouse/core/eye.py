@@ -8,7 +8,7 @@ class eye(object):
     LEFTEYEPOINTS= [36, 37, 38, 39, 40, 41]
     RIGHTEYEPOINTS= [42, 43, 44, 45, 46, 47]
 
-    def __init__(self, original_frame, landmarks, side, calibration):
+    def __init__(self, originalFrame, landmarks, side, calibration):
         self.frame = None
         self.origin = None
         self.center = None
@@ -65,14 +65,14 @@ class eye(object):
 
     def analyze(self, originalFrame, landmarks, side, calibration): 
         if side == 0:
-            points=self.LEFT_EYE_POINTS
+            points=self.LEFTEYEPOINTS
         elif side==1:
-            points=self.RIGHT_EYE_POINTS
+            points=self.RIGHTEYEPOINTS
         else:
             return
         
         self.blinking = self.blinkingRatio(landmarks, points)
-        self.isolate(originalFrame, landmarks, points)
+        self.isolateEye(originalFrame, landmarks, points)
 
         if not calibration.isComplete():
             calibration.evaluate(self.frame, side)

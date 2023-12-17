@@ -10,7 +10,7 @@ class calibrate(object):
         self.thresholdRight=[]
 
     def isComplete(self):
-        return len(self.thresholds.left)>=self.frameCount and len(self.thresholdsRight)>=self.frameCount
+        return len(self.thresholdLeft)>=self.frameCount and len(self.thresholdRight)>=self.frameCount
 
     def threshold(self, side):    
         if side == 0:

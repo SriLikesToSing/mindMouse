@@ -33,7 +33,8 @@ class eyeTracker(object):
 
         try:
             landmarks = self.predictor(frame, faces[0])
-
+            self.rightEye = eye(frame, landmarks, 0, self.calibration)
+            self.leftEye = eye(frame, landmarks, 1, self.calibration)
         except IndexError:
             self.leftEye = None
             self.rightEye = None
