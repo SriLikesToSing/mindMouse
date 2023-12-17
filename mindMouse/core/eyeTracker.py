@@ -2,16 +2,18 @@ from __future__ import division
 import os 
 import cv2
 import dlib
+from .eye import eye
+from .calibrate import calibrate 
 
-class EyeTracker(object):
+class eyeTracker(object):
    
     def __init__(self):
         self.frame = None
         self.rightEye = None
         self.leftEye = None
-        #self.calibration = Calibration()
+        self.calibration = calibrate()
         self.faceDetector = dlib.get_frontal_face_detector()
-        self.predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
+        self.predictor = dlib.shape_predictor("./core/shape_predictor_68_face_landmarks.dat")
 
 
     @property 
@@ -84,7 +86,7 @@ class EyeTracker(object):
     def frameData(self):
         frame = self.frame.copy()
 
-        if self.pupils_located:
+        if self.pupilsDetected:
             color = (0, 255, 0)
             xLeft, yLeft = self.leftEyeCordinates()
             xRight, yRight = self.rightEyeCordinates()

@@ -1,5 +1,6 @@
 from __future__ import division
 import cv2
+from .pupil import pupil
 
 class calibrate(object):
 
