@@ -55,17 +55,17 @@ class eyeTracker(object):
             y = self.rightEye.origin[1] + self.rightEye.pupil.y
             return (x, y)
     
-    def horitontalEyeDirection(self):
+    def horizontalEyeDirection(self):
         if self.pupilsDetected:
             leftEye = self.leftEye.pupil.x / (self.leftEye.center[0] * 2 -10)
             rightEye = self.rightEye.pupil.x / (self.rightEye.center[0] * 2 -10)
-            return (leftPupil + rightPupil)/2
+            return (leftEye + rightEye)/2
 
     def verticalEyeDirection(self):
         if self.pupilsDetected:
             leftEye = self.leftEye.pupil.y / (self.leftEye.center[1] * 2 -10)
             rightEye = self.rightEye.pupil.y / (self.rightEye.center[1] * 2 -10)
-            return (leftPupil + rightPupil)/2
+            return (leftEye + rightEye)/2
 
     def lookingRight(self):
         if self.pupilsDetected:
@@ -77,7 +77,7 @@ class eyeTracker(object):
 
     def lookingCenter(self):
         if self.pupilsDetected:
-            return self.lookingLeft is not True and lookingRight is not True
+            return self.lookingLeft is not True and self.lookingRight is not True
 
     def isBlinking(self):
         if self.pupilsDetected:

@@ -32,8 +32,8 @@ class calibrate(object):
         trials={}
 
         for threshold in range(5, 100, 5):
-            irisFrame=Pupil.imageProcessing(eyeFrame, threshold)
-            trials[threshold] = Calibration.irisSize(irisFrame)
+            irisFrame= pupil.isolateIris(eyeFrame, threshold)
+            trials[threshold] = calibrate.irisSize(irisFrame)
 
         #minimize the differece between average iris size and irisSize for a good threshold value
 
@@ -42,12 +42,11 @@ class calibrate(object):
         return bestThreshold
 
     def evaluate(self, eyeFrame, side):
-        threshold = self.findBestThreshold(eyeFrame)
-
+        threshold = self.thresholdFinder(eyeFrame)
         if side ==0:
-            self.thresholdsLeft.append(threshold)
+            self.thresholdLeft.append(threshold)
         elif side==1:
-            self.thresholdsRight.append(threshold)
+            self.thresholdRight.append(threshold)
 
 
         
