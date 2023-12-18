@@ -2,7 +2,7 @@ import cv2
 import random
 import numpy as np
 from core import eyeTracker 
-
+import mouse
 
 cap = cv2.VideoCapture(0)
 iTracker=eyeTracker()
@@ -28,6 +28,16 @@ while True:
         text="looking left"
     elif iTracker.lookingCenter():
         text="looking center"
+    elif iTracker.isBlinkingLeft():
+        text="right click engaged"
+        mouse.click('right')
+    elif iTracker.isBlinkingRight():
+        text="left click engaged"
+        mouse.click('left')
+
+
+
+
 
     cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
 
