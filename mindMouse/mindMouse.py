@@ -11,8 +11,6 @@ if not cap.isOpened():
     print('hello')
     raise IOError("Cannot open webcam")
 
-
-
 while True:
     ret, frame = cap.read()
     iTracker.refresh(frame)
@@ -20,8 +18,17 @@ while True:
     frame = iTracker.frameData()
     text=""
 
+    if iTracker.isBlinkingRight():
+        print('clicking left')
+        mouse.click('left')
+
+    if iTracker.isBlinkingLeft():
+        print('cliking right')
+        mouse.click('right')
+
     if iTracker.isBlinking():
-        text="currently blinking"
+#        text="currently blinking"
+        text=""
     elif iTracker.lookingRight():
         text="looking right"
     elif iTracker.lookingLeft():
@@ -29,10 +36,11 @@ while True:
     elif iTracker.lookingCenter():
         text="looking center"
     elif iTracker.isBlinkingLeft():
-        text="right click engaged"
+        text="RIGHT CLICK"
         mouse.click('right')
     elif iTracker.isBlinkingRight():
-        text="left click engaged"
+        #text="LEFT CLICK"
+        print('clicking')
         mouse.click('left')
 
 

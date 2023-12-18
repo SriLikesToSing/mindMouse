@@ -82,15 +82,18 @@ class eyeTracker(object):
     def isBlinking(self):
         if self.pupilsDetected:
             blinkingRatio = (self.leftEye.blinking + self.rightEye.blinking)/2
+#            print(self.leftEye.blinking, ":", self.rightEye.blinking)
             return blinkingRatio > 3.8
 
     def isBlinkingLeft(self):
         if self.pupilsDetected:
-            return self.leftEye.blinking > 1.9
+            print("BLINKING RIGHT: ", self.leftEye.blinking)
+            return self.leftEye.blinking > 5.0
 
     def isBlinkingRight(self):
         if self.pupilsDetected:
-            return self.rightEye.blinking > 1.9
+            print("BLINKING LEFT: ", self.rightEye.blinking)
+            return self.leftEye.blinking > 5.0
 
     def frameData(self):
         frame = self.frame.copy()
