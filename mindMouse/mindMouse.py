@@ -18,6 +18,8 @@ while True:
     frame = iTracker.frameData()
     text=""
 
+    pos = mouse.get_position()
+
     if iTracker.isBlinkingRight():
         print('clicking left')
         mouse.click('left')
@@ -26,25 +28,23 @@ while True:
         print('cliking right')
         mouse.click('right')
 
-    if iTracker.isBlinking():
-#        text="currently blinking"
-        text=""
-    elif iTracker.lookingRight():
+    if iTracker.lookingRight():
+        mouse.move(pos[0]+1, pos[1], duration=0)
         text="looking right"
-    elif iTracker.lookingLeft():
+
+    if iTracker.lookingLeft():
+        mouse.move(pos[0]-1, pos[1], duration=0)    
         text="looking left"
-    elif iTracker.lookingCenter():
+
+    if iTracker.lookingUp():
+        mouse.move(pos[0], pos[1]-1, duration=0)
+
+    if iTracker.lookingDown():
+        mouse.move(pos[0], pos[1]+1, duration=0)
+        
+
+    if iTracker.lookingCenter():
         text="looking center"
-    elif iTracker.isBlinkingLeft():
-        text="RIGHT CLICK"
-        mouse.click('right')
-    elif iTracker.isBlinkingRight():
-        #text="LEFT CLICK"
-        print('clicking')
-        mouse.click('left')
-
-
-
 
 
     cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
@@ -53,7 +53,6 @@ while True:
     rightPupil = iTracker.rightEyeCordinates()
     cv2.putText(frame, "Left pupil: " + str(leftPupil), (90, 130), cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
     cv2.putText(frame, "Right pupil" + str(rightPupil), (90, 165), cv2.FONT_HERSHEY_DUPLEX, 0.9, (147, 58, 31), 1)
-
 
     cv2.imshow('application', frame)
 

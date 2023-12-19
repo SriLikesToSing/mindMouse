@@ -50,7 +50,10 @@ Function:
 	internal one
 
 
-		
+TODO:
+	- get mouse functionalitites progrrammed
+	- improve consistency 
+	- create nice user interface and init process
 
 		
 		
