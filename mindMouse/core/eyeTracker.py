@@ -59,29 +59,32 @@ class eyeTracker(object):
         if self.pupilsDetected:
             leftEye = self.leftEye.pupil.x / (self.leftEye.center[0] * 2 -10)
             rightEye = self.rightEye.pupil.x / (self.rightEye.center[0] * 2 -10)
+
+           # print("Left eye: ", leftEye, " Right eye: " , rightEye)
             return (leftEye + rightEye)/2
 
     def verticalEyeDirection(self):
         if self.pupilsDetected:
             leftEye = self.leftEye.pupil.y / (self.leftEye.center[1] * 2 -10)
             rightEye = self.rightEye.pupil.y / (self.rightEye.center[1] * 2 -10)
+            print("Left eye: ", leftEye, " Right eye: " , rightEye)
             return (leftEye + rightEye)/2
 
     def lookingRight(self):
         if self.pupilsDetected:
-            return self.horizontalEyeDirection() <= 0.35
+            return self.horizontalEyeDirection()<=0.35
 
     def lookingLeft(self):
         if self.pupilsDetected:
-            return self.horizontalEyeDirection() <= 0.65
+            return self.horizontalEyeDirection()>=0.65
 
     def lookingUp(self):
         if self.pupilsDetected:
-            return self.verticalEyeDirection() <= 0.35
+            return self.verticalEyeDirection() > 1.0
 
     def lookingDown(self):
         if self.pupilsDetected:
-            return self.verticalEyeDirection() <= 0.65
+            return self.verticalEyeDirection() <= 0.8
 
     def lookingCenter(self):
         if self.pupilsDetected:
@@ -95,13 +98,13 @@ class eyeTracker(object):
 
     def isBlinkingLeft(self):
         if self.pupilsDetected:
-            print("BLINKING RIGHT: ", self.leftEye.blinking)
-            return self.leftEye.blinking > 4.8
+#            print("BLINKING RIGHT: ", self.leftEye.blinking)
+            return self.leftEye.blinking > 4.8 and not self.isBlinking()
 
     def isBlinkingRight(self):
         if self.pupilsDetected:
-            print("BLINKING LEFT: ", self.rightEye.blinking)
-            return self.leftEye.blinking > 4.8
+#            print("BLINKING LEFT: ", self.rightEye.blinking)
+            return self.rightEye.blinking > 4.8 and not self.isBlinking()
 
     def frameData(self):
         frame = self.frame.copy()
