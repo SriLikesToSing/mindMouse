@@ -11,8 +11,14 @@ if not cap.isOpened():
     print('hello')
     raise IOError("Cannot open webcam")
 
-def moveMouse(eyeTracker, right, left, up, down):
-    # if true, false pair, then 
+def moveMouse(pos, right, left, up, down):
+    # if true, false pair, then dirhor=+1 else -1
+    #  if true, false pair, then dirver=+1 else -1
+
+    dirhor= 1 if right and not left else -1 if not right and left else 0
+    dirver= 1 if up and not down else -1 if not up and down else 0
+
+    mouse.move(pos[0]+dirhor, pos[1]+dirver, duration=0)
 
 
 
@@ -27,25 +33,13 @@ while True:
 
 #    print("Horizontal Direction " , iTracker.horizontalEyeDirection(), ":", " Vertical Direction ", iTracker.verticalEyeDirection())
 
+    moveMouse(pos, iTracker.lookingRight(), iTracker.lookingLeft(), iTracker.lookingUp(), iTracker.lookingDown())
+
     if iTracker.isBlinkingRight():
         mouse.click('right')
 
     if iTracker.isBlinkingLeft():
         mouse.click('left')
-
-    if iTracker.lookingRight():
-        mouse.move(pos[0]+1, pos[1], duration=0)
-        text="looking right"
-
-    if iTracker.lookingLeft():
-        mouse.move(pos[0]-1, pos[1], duration=0)    
-        text="looking left"
-
-    if iTracker.lookingUp():
-        mouse.move(pos[0], pos[1]-1, duration=0)
-
-    if iTracker.lookingDown():
-        mouse.move(pos[0], pos[1]+1, duration=0)
         
     cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
 
