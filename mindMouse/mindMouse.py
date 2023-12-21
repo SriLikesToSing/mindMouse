@@ -17,8 +17,9 @@ def moveMouse(pos, right, left, up, down):
 
     dirhor= 1 if right and not left else -1 if not right and left else 0
     dirver= 1 if up and not down else -1 if not up and down else 0
+    print("DIRHORIZONTAL : " , dirhor)
 
-    mouse.move(pos[0]+dirhor, pos[1]+dirver, duration=0)
+    mouse.move(pos[0]+dirhor, pos[1]+0, duration=0)
 
 
 
