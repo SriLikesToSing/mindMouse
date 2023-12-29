@@ -4,7 +4,7 @@ import numpy as np
 from core import eyeTracker 
 import mouse
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('http://192.168.0.5:8080/video')
 iTracker=eyeTracker()
 
 if not cap.isOpened():
@@ -13,13 +13,13 @@ if not cap.isOpened():
 
 def moveMouse(pos, right, left, up, down):
     # if true, false pair, then dirhor=+1 else -1
-    #  if true, false pair, then dirver=+1 else -1
+    # if true, false pair, then dirver=+1 else -1
 
     dirhor= 1 if right and not left else -1 if not right and left else 0
     dirver= 1 if up and not down else -1 if not up and down else 0
     print("DIRHORIZONTAL : " , dirhor)
 
-    mouse.move(pos[0]+dirhor*2, pos[1]+dirver*2, duration=0)
+    mouse.move(pos[0]+dirhor*4, pos[1]+dirver*4, duration=0)
 
 while True:
     ret, frame = cap.read()

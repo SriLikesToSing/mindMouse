@@ -99,12 +99,15 @@ class eyeTracker(object):
     def isBlinkingLeft(self):
         if self.pupilsDetected:
             print("BLINKING RIGHT: ", self.leftEye.blinking)
-            return self.leftEye.blinking > 4.4 and not self.isBlinking() and self.rightEye.blinking  < 4.4
+            return self.leftEye.blinking > 3.8 and not self.isBlinking() and self.rightEye.blinking  < 3.8
 
     def isBlinkingRight(self):
         if self.pupilsDetected:
             print("BLINKING LEFT: ", self.rightEye.blinking)
-            return self.rightEye.blinking > 4.4 and not self.isBlinking() and self.leftEye.blinking < 4.4
+            return self.rightEye.blinking > 3.8 and not self.isBlinking() and self.leftEye.blinking < 3.8
+
+    def returnCords(self):
+        return [self.rightEyeCordinates(), self.leftEyeCordinates()]
 
     def frameData(self):
         frame = self.frame.copy()
