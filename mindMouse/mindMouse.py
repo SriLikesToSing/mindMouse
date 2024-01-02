@@ -5,6 +5,7 @@ from core import eyeTracker
 import mouse
 
 cap = cv2.VideoCapture('http://192.168.0.5:8080/video')
+#cap = cv2.VideoCapture(0)
 iTracker=eyeTracker()
 
 if not cap.isOpened():
@@ -12,9 +13,6 @@ if not cap.isOpened():
     raise IOError("Cannot open webcam")
 
 def moveMouse(pos, right, left, up, down):
-    # if true, false pair, then dirhor=+1 else -1
-    # if true, false pair, then dirver=+1 else -1
-
     dirhor= 1 if right and not left else -1 if not right and left else 0
     dirver= 1 if up and not down else -1 if not up and down else 0
 

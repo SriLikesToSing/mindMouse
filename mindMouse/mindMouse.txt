@@ -68,14 +68,18 @@ TODO:
 			- I tried compressing multiple frames at once and releasing them
 			in periodic time, but this makes is worse for some reason.
 
-
 		- lossless compression.
 
 		- rewriting the entire thing in C++:
 			- the thing with this is that the opencv library itself is a
-			wrapper for the C++ lirbary. so performance is nearly identical.
+			wrapper for the C++ library. so performance is nearly identical.
 			The only slowdown comes from native python functions written
 			outside of numpy and opencv.
+
+		- oh god I think I fixed the latency by switching it to an rtsp and
+		UDP packet system and reducing resolution. Thankfully I didn't have to
+		commit to any lossless comperssion techniques that would've wasting me
+		so much time. 
 			
 
 
