@@ -70,13 +70,7 @@ TODO:
 
 
 		- lossless compression.
-
-		- rewriting the entire thing in C++:
-			- the thing with this is that the opencv library itself is a
-			wrapper for the C++ lirbary. so performance is nearly identical.
-			The only slowdown comes from native python functions written
-			outside of numpy and opencv.
-			
+			- 
 
 
 		
